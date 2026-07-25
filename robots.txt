@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aadi.itstripathi.online/sitemap.xml
