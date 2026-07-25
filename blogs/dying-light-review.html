@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  BLOG POST TEMPLATE
+  ============================================================================
+  This file is both a real post AND the template for every future post.
+
+  TO WRITE A NEW POST:
+    1. Duplicate this file in the /blogs folder and rename it,
+       e.g. blogs/my-new-post.html
+    2. Edit the <title> and meta description below.
+    3. Edit the "POST HERO" block: category tag, title, date, read time.
+    4. Edit the "ARTICLE CONTENT" block: this is the actual post body.
+       Just use <h2>, <p>, <ul>, <blockquote> — the styling is automatic.
+    5. Edit the tags near the bottom.
+    6. Go to ../index.html, find the "BLOG GRID" comment in the Blogs
+       section, duplicate a <article class="blog-card"> block, and point
+       its links at your new file.
+
+  Everything else (navbar, background, footer, animations) is shared via
+  ../styles.css and ../script.js — you shouldn't need to touch it.
+  ============================================================================
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dying Light: Why Its Parkour Still Holds Up — Aadi Tripathi</title>
+<meta name="description" content="A look at what makes Dying Light's movement system click, and what I've taken from it while designing my own gameplay systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body class="blog-page">
+
+<div class="bg-layer" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-stars" id="bgStars"></div>
+  <div class="bg-cubes" id="bgCubes"></div>
+  <div class="bg-scanlines"></div>
+  <div class="bg-vignette"></div>
+</div>
+
+<!-- NAVBAR — links point back to sections on the homepage -->
+<header class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="../index.html#home" class="logo" aria-label="Aadi Tripathi — home">
+      <span class="logo-mark">AT</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../index.html#home">Home</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#achievements">Achievements</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#blogs" class="active">Blogs</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+    <a href="#" class="btn btn-ghost resume-btn">
+      <span>Resume</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0l-5-5m5 5l5-5M5 21h14"/></svg>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <!--
+      ==========================================================
+      POST HERO — edit tag, title, date and read time here.
+      "blog-cover-nightcity" is an original CSS/SVG-style graphic
+      (no game screenshots or copyrighted art) evoking a
+      night-city mood. Swap the class for another blog-cover-*
+      you add in styles.css, or replace with your own <img>.
+      ==========================================================
+    -->
+    <div class="post-hero blog-cover-nightcity fade-up in-view">
+      <img src="../assets/blog-banner-dying-light.svg" alt="Abstract night-city skyline with a dotted rooftop path, evoking Dying Light's parkour" class="post-hero-img" loading="eager">
+      <div class="post-hero-overlay">
+        <span class="blog-card-tag">GAME NOTES</span>
+        <h1 class="post-title">Dying Light: Why Its Parkour Still Holds Up</h1>
+        <div class="post-meta">
+          <span>July 2026</span><span class="post-meta-dot">&bull;</span><span>6 min read</span><span class="post-meta-dot">&bull;</span><span>Game Design</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-shell">
+      <a href="../index.html#blogs" class="back-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m0 0l7 7m-7-7l7-7"/></svg>
+        Back to all posts
+      </a>
+
+      <!--
+        ==========================================================
+        ARTICLE CONTENT — this is the part you'll rewrite most.
+        Stick to h2 / h3 / p / ul / blockquote and it'll match
+        the site's styling automatically.
+        ==========================================================
+      -->
+      <article class="post-content">
+
+        <p>
+          Most open-world games treat traversal as the tax you pay to get to the interesting part. <strong>Dying Light</strong> is one of the few that made getting there the interesting part. Years after first playing it, its parkour is still the thing I think about most when I'm sketching movement systems of my own — so I wanted to actually pick apart why it works.
+        </p>
+
+        <h2>Movement as the core mechanic, not a coat of paint</h2>
+        <p>
+          A lot of games bolt free-running onto a shooter or an RPG and call it a feature. Dying Light builds outward from movement instead: the city of Harran is a dense, vertical playground of rooftops, pipes, and gaps that are just slightly too far to make safely. Every ledge grab, vault, and slide is tuned to feel a fraction more dangerous than it actually is — which is exactly what keeps you engaged instead of numb to it.
+        </p>
+        <p>
+          The key design decision, as far as I can tell, is that <strong>momentum has consequences</strong>. Sprinting builds a stamina cost, missed jumps have real fall damage, and the environment is built with enough verticality that a bad decision three rooftops back can still be recovering from when you land the next jump. That's what separates "traversal tech demo" from "a system you have to actually get good at."
+        </p>
+
+        <blockquote>
+          The best traversal systems don't remove risk from movement — they make the risk legible enough that failure feels like your mistake, not the game's.
+        </blockquote>
+
+        <h2>Night and day as a difficulty dial, not just a skybox</h2>
+        <p>
+          The day/night cycle is the other piece that makes the parkour matter. During the day, Harran is dangerous but navigable. At night, faster and far more aggressive infected come out, and the smart play is almost always to stay on the rooftops rather than fight. That single rule — <em>the ground belongs to them after dark</em> — retroactively makes every skill you've built during the day feel like it has a purpose beyond looking cool.
+        </p>
+        <ul>
+          <li>Daytime parkour teaches you the map and the rhythm of movement with a forgiving safety net.</li>
+          <li>Nighttime parkour is a stress test of that same skill set, under a much smaller margin for error.</li>
+          <li>The UV light mechanic (and later, chases from Volatiles) gives night traversal its own tension curve instead of just being "day mode but harder."</li>
+        </ul>
+
+        <figure>
+          <img src="../assets/blog-inline-daynight.svg" alt="Split illustration comparing a calm daytime rooftop skyline to a tense, red-lit nighttime skyline" loading="lazy">
+          <figcaption>Day vs. night — the same rooftops, a completely different risk profile.</figcaption>
+        </figure>
+
+        <h2>What I've taken from it as a developer</h2>
+        <p>
+          I don't build anything close to Dying Light's scale, but the underlying lesson travels well to much smaller games: movement feels good when the player's skill is legible to <em>them</em>, not just measured by the game. In my own projects — <strong>Little Guys</strong> especially — I've tried to carry over the idea that a traversal or combat system should teach itself through consequence rather than a tutorial popup: let a near-miss teach the player what "close" feels like, and they'll internalize the rule much faster than if you'd just told them.
+        </p>
+
+        <div class="post-callout glass">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>
+          <p><strong>Takeaway:</strong> good traversal design is really risk design wearing a movement costume. If the player can feel the risk without a health bar telling them about it, you've done the hard part.</p>
+        </div>
+
+        <p>
+          I'll probably keep coming back to this one. It's rare for a game's core verb to still feel this good almost a decade on — most traversal systems age like a tech demo, and this one still holds up like a design lesson.
+        </p>
+
+      </article>
+
+      <!-- EDIT: tags for this post -->
+      <div class="post-tags">
+        <span class="badge-pill">Game Design</span>
+        <span class="badge-pill">Level Design</span>
+        <span class="badge-pill">Dying Light</span>
+        <span class="badge-pill">Movement Systems</span>
+      </div>
+
+      <div class="post-nav-footer">
+        <a href="../index.html#blogs" class="btn btn-outline magnetic">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m0 0l7 7m-7-7l7-7"/></svg>
+          <span>All Posts</span>
+        </a>
+        <a href="all.html" class="btn btn-outline magnetic">
+          <span>More Posts</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER — identical to the homepage footer -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <p>&copy; <span id="year"></span> Aadi Tripathi. All rights reserved.<span>Built with HTML, CSS &amp; JavaScript.</span></p>
+    <div class="footer-socials">
+      <a href="https://github.com/10menoscared07" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.5 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.22-3.37-1.22-.46-1.2-1.11-1.52-1.11-1.52-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.34-1.11.62-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.32.1-2.75 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.9-1.33 2.75-1.05 2.75-1.05.55 1.43.2 2.49.1 2.75.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.8-4.58 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.81 0 .28.18.61.69.5A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+      </a>
+      <a href="https://linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM3.56 20.45h3.56V9H3.56v11.45z"/></svg>
+      </a>
+      <a href="https://pixelxninja.itch.io/" target="_blank" rel="noopener" aria-label="itch.io">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 2 7v3c0 1.5 1.3 2.7 2.8 2.7S7.6 11.5 7.6 10c0 1.5 1.3 2.7 2.8 2.7S13.2 11.5 13.2 10c0 1.5 1.3 2.7 2.8 2.7s2.8-1.2 2.8-2.7v-3L12 2z"/><path d="M4.5 12.5V19c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2v-6.5M9 14.5h6M9 17.5h3"/></svg>
+      </a>
+    </div>
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </button>
+  </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

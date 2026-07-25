@@ -1,0 +1,58 @@
+<svg viewBox="0 0 1000 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Split illustration comparing a calm daytime rooftop skyline to a tense red-lit nighttime skyline</title>
+  <defs>
+    <linearGradient id="daySky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a3648"/>
+      <stop offset="100%" stop-color="#3d4d63"/>
+    </linearGradient>
+    <linearGradient id="nightSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e12"/>
+      <stop offset="100%" stop-color="#0a0c10"/>
+    </linearGradient>
+  </defs>
+
+  <!-- day half -->
+  <rect x="0" y="0" width="500" height="320" fill="url(#daySky)"/>
+  <circle cx="410" cy="70" r="30" fill="#ffe9a8" opacity="0.85"/>
+  <g fill="#243044">
+    <rect x="0" y="200" width="55" height="120"/>
+    <rect x="60" y="160" width="45" height="160"/>
+    <rect x="115" y="220" width="70" height="100"/>
+    <rect x="195" y="130" width="50" height="190"/>
+    <rect x="255" y="190" width="90" height="130"/>
+    <rect x="355" y="150" width="45" height="170"/>
+    <rect x="410" y="210" width="80" height="110"/>
+  </g>
+  <polyline points="0,260 60,235 130,255 210,205 280,240 350,200 410,230 470,205 500,220"
+    fill="none" stroke="#67D9FF" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- night half -->
+  <rect x="500" y="0" width="500" height="320" fill="url(#nightSky)"/>
+  <circle cx="880" cy="60" r="16" fill="#e8f6ff" opacity="0.5"/>
+  <g fill="#150a0d">
+    <rect x="500" y="200" width="55" height="120"/>
+    <rect x="560" y="160" width="45" height="160"/>
+    <rect x="615" y="220" width="70" height="100"/>
+    <rect x="695" y="130" width="50" height="190"/>
+    <rect x="755" y="190" width="90" height="130"/>
+    <rect x="855" y="150" width="45" height="170"/>
+    <rect x="910" y="210" width="80" height="110"/>
+  </g>
+  <g fill="#ff5470" opacity="0.75">
+    <rect x="518" y="225" width="6" height="8"/>
+    <rect x="575" y="185" width="6" height="8"/>
+    <rect x="635" y="250" width="6" height="8"/>
+    <rect x="710" y="160" width="6" height="8"/>
+    <rect x="780" y="220" width="6" height="8"/>
+    <rect x="870" y="180" width="6" height="8"/>
+    <rect x="935" y="245" width="6" height="8"/>
+  </g>
+  <polyline points="500,270 560,240 630,265 700,215 770,250 840,205 900,240 960,210 1000,225"
+    fill="none" stroke="#ff5470" stroke-width="2.5" stroke-linecap="round" opacity="0.85" stroke-dasharray="1 8"/>
+
+  <!-- divider -->
+  <rect x="497" y="0" width="6" height="320" fill="#0a0c10"/>
+
+  <text x="30" y="35" font-family="'JetBrains Mono', monospace" font-size="14" letter-spacing="2" fill="#9BA3B0">DAY — NAVIGABLE</text>
+  <text x="530" y="35" font-family="'JetBrains Mono', monospace" font-size="14" letter-spacing="2" fill="#ff8a9c">NIGHT — ROOFTOPS ONLY</text>
+</svg>

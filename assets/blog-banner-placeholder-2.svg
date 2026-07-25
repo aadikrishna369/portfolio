@@ -1,0 +1,24 @@
+<svg viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Placeholder cover image — topographic motif</title>
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a2230"/>
+      <stop offset="100%" stop-color="#0a0c10"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="400" fill="url(#bg2)"/>
+
+  <g stroke="#67D9FF" stroke-width="1.4" fill="none" opacity="0.4">
+    <path d="M-20 60 C 200 20, 300 120, 500 70 S 900 30, 1220 90"/>
+    <path d="M-20 130 C 220 90, 320 190, 520 140 S 920 100, 1220 160"/>
+    <path d="M-20 200 C 240 160, 340 260, 540 210 S 940 170, 1220 230"/>
+    <path d="M-20 270 C 260 230, 360 330, 560 280 S 960 240, 1220 300"/>
+    <path d="M-20 340 C 280 300, 380 380, 580 350 S 980 310, 1220 360"/>
+  </g>
+
+  <circle cx="640" cy="150" r="5" fill="#67D9FF" opacity="0.7"/>
+  <circle cx="640" cy="150" r="16" fill="none" stroke="#67D9FF" stroke-opacity="0.35" stroke-width="1.5"/>
+  <circle cx="640" cy="150" r="30" fill="none" stroke="#67D9FF" stroke-opacity="0.18" stroke-width="1.5"/>
+
+  <text x="600" y="360" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="15" letter-spacing="3" fill="#5D6472">COVER IMAGE PLACEHOLDER — SWAP ME</text>
+</svg>
