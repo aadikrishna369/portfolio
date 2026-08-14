@@ -30,7 +30,17 @@ const blogPosts = [
     category: "GAME NOTES",
     url: "dying-light-review.html",
     banner: "../assets/blog-banner-dying-light.svg"
-  }
+  },
+{
+  slug: "significance-of-delta-time",
+  title: "The Significance of Delta Time",
+  excerpt: "Why every frame-independent game quietly depends on one small variable, and the ways it can still bite you if you're not careful.",
+  date: "August 2026",
+  readTime: "10 min read",
+  category: "GAME NOTES",
+  url: "significance-of-delta-time.html",
+  banner: "../assets/blog-banner-delta-time.svg"
+}
 
   // Add future posts above this line.
 ];
