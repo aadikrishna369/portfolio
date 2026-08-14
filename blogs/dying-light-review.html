@@ -31,6 +31,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
+<style>
+    .post-content{
+        line-height:2;
+    }
+
+</style>
 </head>
 <body class="blog-page">
 
@@ -49,17 +55,14 @@
       <span class="logo-mark">AT</span>
     </a>
     <nav class="nav-links" aria-label="Primary">
-      <a href="../index.html#home">Home</a>
-      <a href="../index.html#about">About</a>
-      <a href="../index.html#achievements">Achievements</a>
-      <a href="../index.html#projects">Projects</a>
-      <a href="../index.html#skills">Skills</a>
-      <a href="../index.html#blogs" class="active">Blogs</a>
+      <a href="all.html">Home</a>
+      <a href="../index.html">About</a>
+      <a href="all.html" class="active">Blogs</a>
       <a href="../index.html#contact">Contact</a>
     </nav>
     <a href="#" class="btn btn-ghost resume-btn">
-      <span>Resume</span>
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0l-5-5m5 5l5-5M5 21h14"/></svg>
+      <!-- <span></span> -->
+      <!-- <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0l-5-5m5 5l5-5M5 21h14"/></svg> -->
     </a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -117,7 +120,7 @@
           The key design decision, as far as I can tell, is that <strong>momentum has consequences</strong>. Sprinting builds a stamina cost, missed jumps have real fall damage, and the environment is built with enough verticality that a bad decision three rooftops back can still be recovering from when you land the next jump. That's what separates "traversal tech demo" from "a system you have to actually get good at."
         </p>
 
-        <blockquote>
+        <blockquote class="pull-quote">
           The best traversal systems don't remove risk from movement — they make the risk legible enough that failure feels like your mistake, not the game's.
         </blockquote>
 
@@ -140,6 +143,29 @@
         <p>
           I don't build anything close to Dying Light's scale, but the underlying lesson travels well to much smaller games: movement feels good when the player's skill is legible to <em>them</em>, not just measured by the game. In my own projects — <strong>Little Guys</strong> especially — I've tried to carry over the idea that a traversal or combat system should teach itself through consequence rather than a tutorial popup: let a near-miss teach the player what "close" feels like, and they'll internalize the rule much faster than if you'd just told them.
         </p>
+        <p>
+          A small, boring example of that from my own movement code — momentum and fall risk have to be scaled by real elapsed time, not by frame count, or the "risk" the player is reading stops meaning anything the moment their frame rate changes:
+        </p>
+
+        <div class="code-box">
+          <div class="code-box-header">
+            <div class="code-box-dots"><span></span><span></span><span></span></div>
+            <span class="code-box-lang">python</span>
+            <button class="code-copy-btn" type="button" data-copy-target="momentum-snippet">
+              <svg class="icon-copy" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>
+              <span class="code-copy-label">Copy</span>
+            </button>
+          </div>
+          <pre class="code-box-pre"><code id="momentum-snippet" class="language-python"><span class="tok-kw">class</span> <span class="tok-fn">Runner</span>:
+    <span class="tok-kw">def</span> <span class="tok-fn">update</span>(<span class="tok-kw">self</span>, <span class="tok-punc">delta_time:</span> <span class="tok-type">float</span>) <span class="tok-punc">-></span> <span class="tok-type">None</span><span class="tok-punc">:</span>
+        <span class="tok-com"># momentum builds with real elapsed time, not frame count</span>
+        <span class="tok-kw">self</span>.stamina <span class="tok-punc">-=</span> <span class="tok-kw">self</span>.sprint_cost <span class="tok-punc">*</span> delta_time
+        <span class="tok-kw">self</span>.position <span class="tok-punc">+=</span> <span class="tok-kw">self</span>.velocity <span class="tok-punc">*</span> delta_time
+
+        <span class="tok-kw">if</span> <span class="tok-kw">self</span>.falling:
+            <span class="tok-kw">self</span>.fall_speed <span class="tok-punc">+=</span> GRAVITY <span class="tok-punc">*</span> delta_time
+            <span class="tok-kw">self</span>.check_landing(<span class="tok-kw">self</span>.fall_speed)</code></pre>
+        </div>
 
         <div class="post-callout glass">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>
@@ -196,5 +222,31 @@
 </footer>
 
 <script src="../script.js"></script>
+<!--
+  Copy-to-clipboard for .code-box. This is scoped inline for now since
+  script.js wasn't in hand while wiring up the code-box component — move
+  this block into ../script.js so every post gets it for free instead of
+  pasting it into each one.
+-->
+<script>
+document.querySelectorAll('.code-copy-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var targetId = btn.getAttribute('data-copy-target');
+    var codeEl = targetId ? document.getElementById(targetId) : btn.closest('.code-box').querySelector('code');
+    if(!codeEl) return;
+    var text = codeEl.innerText;
+    navigator.clipboard.writeText(text).then(function(){
+      var label = btn.querySelector('.code-copy-label');
+      var original = label ? label.textContent : null;
+      btn.classList.add('copied');
+      if(label) label.textContent = 'Copied';
+      setTimeout(function(){
+        btn.classList.remove('copied');
+        if(label && original) label.textContent = original;
+      }, 1800);
+    });
+  });
+});
+</script>
 </body>
 </html>
