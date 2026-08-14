@@ -16,6 +16,18 @@
   --accent-soft:   rgba(76,201,240,0.14);
   --glow:          rgba(103,217,255,0.35);
 
+  /* code box syntax tokens */
+  --code-bg:       #0B0D11;
+  --code-border:   rgba(255,255,255,0.08);
+  --code-text:     #D8DEE9;
+  --code-kw:       #67D9FF;   /* keywords: def, return, if, class... */
+  --code-fn:       #C9A4FF;   /* function / method names */
+  --code-type:     #FFB86B;   /* type hints: float, int, -> None, etc. */
+  --code-str:      #9CE5A8;   /* strings */
+  --code-num:      #FF9E9E;   /* numbers */
+  --code-comment:  #6B7280;   /* comments */
+  --code-punc:     #8892A6;   /* punctuation / operators */
+
   --font-body: 'Inter', -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
 
@@ -38,7 +50,7 @@ body{
   background:var(--bg);
   color:var(--text);
   font-family:var(--font-body);
-  line-height:1.65;
+  line-height:1.75;
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
 }
@@ -354,7 +366,11 @@ ul,li{ list-style:none; }
 
 .post-content p{ color:var(--text-muted); font-size:16.5px; line-height:1.85; margin-bottom:22px; }
 .post-content p strong{ color:var(--text); font-weight:600; }
-.post-content h2{ font-size:26px; font-weight:800; margin:48px 0 18px; letter-spacing:-0.01em; }
+.post-content h2{
+  font-size:26px; font-weight:800; margin:48px 0 20px; letter-spacing:-0.01em;
+  text-decoration-line:underline; text-decoration-style:wavy; text-decoration-color:var(--highlight);
+  text-decoration-thickness:2.2px; text-underline-offset:9px; -webkit-text-decoration-skip-ink:none; text-decoration-skip-ink:none;
+}
 .post-content h3{ font-size:19px; font-weight:700; margin:34px 0 14px; }
 .post-content ul{ margin:0 0 22px; padding-left:0; }
 .post-content ul li{
@@ -382,6 +398,98 @@ ul,li{ list-style:none; }
 .post-callout svg{ color:var(--highlight); flex-shrink:0; margin-top:2px; }
 .post-callout p{ margin-bottom:0; font-size:15px; }
 .post-callout strong{ color:var(--text); }
+
+/* --------------------------------------------------------------------
+   PULL QUOTE — a mid-article, centered quote for a single standout line.
+   Usage: <blockquote class="pull-quote">Your line here.</blockquote>
+   Keep the regular <blockquote> (left-border, left-aligned) for quotes
+   embedded in the flow of a paragraph; use .pull-quote to break the
+   article and give one sentence its own centered moment.
+   -------------------------------------------------------------------- */
+.post-content blockquote.pull-quote{
+  border-left:none; text-align:center; max-width:560px; margin:52px auto;
+  padding:30px 24px; font-size:22px; line-height:1.55; font-style:italic; color:var(--text);
+  border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  position:relative;
+}
+.post-content blockquote.pull-quote::before{
+  content:'\201C'; display:block; font-family:Georgia, 'Times New Roman', serif;
+  font-size:56px; line-height:1; color:var(--highlight); opacity:0.55; margin-bottom:6px;
+}
+.post-content blockquote.pull-quote cite{
+  display:block; margin-top:14px; font-style:normal; font-family:var(--font-mono);
+  font-size:12.5px; letter-spacing:0.06em; color:var(--text-faint);
+}
+
+/* --------------------------------------------------------------------
+   CODE BOX — a labeled, copyable code block with Python syntax tokens.
+   Usage:
+     <div class="code-box">
+       <div class="code-box-header">
+         <div class="code-box-dots"><span></span><span></span><span></span></div>
+         <span class="code-box-lang">python</span>
+         <button class="code-copy-btn" type="button" data-copy-target="my-snippet">
+           <svg class="icon-copy" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>
+           <span class="code-copy-label">Copy</span>
+         </button>
+       </div>
+       <pre class="code-box-pre"><code id="my-snippet" class="language-python">...</code></pre>
+     </div>
+   Wrap tokens in spans to color them: .tok-kw (keywords), .tok-fn (function/
+   method names), .tok-type (type hints — int, float, -> None, etc.),
+   .tok-str (strings), .tok-num (numbers), .tok-com (comments), .tok-punc
+   (punctuation/operators). Copy behavior is wired up by a small script —
+   see the inline <script> at the bottom of a post that uses .code-box.
+   -------------------------------------------------------------------- */
+.post-content .code-box{
+  margin:36px 0; border-radius:var(--radius-md); border:1px solid var(--code-border);
+  background:var(--code-bg); overflow:hidden;
+}
+.code-box-header{
+  display:flex; align-items:center; gap:12px; padding:11px 16px;
+  background:rgba(255,255,255,0.03); border-bottom:1px solid var(--code-border);
+}
+.code-box-dots{ display:flex; gap:6px; }
+.code-box-dots span{ width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,0.14); }
+.code-box-dots span:nth-child(1){ background:#FF6B6B; opacity:0.55; }
+.code-box-dots span:nth-child(2){ background:#FFD166; opacity:0.55; }
+.code-box-dots span:nth-child(3){ background:#5CE097; opacity:0.55; }
+.code-box-lang{
+  font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase;
+  color:var(--text-faint); flex:1;
+}
+.code-copy-btn{
+  display:inline-flex; align-items:center; gap:6px; font-family:var(--font-mono);
+  font-size:11.5px; color:var(--text-muted); padding:5px 10px; border-radius:100px;
+  border:1px solid var(--code-border); background:rgba(255,255,255,0.02);
+  transition:color 0.25s, border-color 0.25s, background 0.25s;
+}
+.code-copy-btn:hover{ color:var(--highlight); border-color:var(--border-strong); background:rgba(103,217,255,0.06); }
+.code-copy-btn.copied{ color:#5CE097; border-color:rgba(92,224,151,0.4); background:rgba(92,224,151,0.08); }
+.code-copy-btn .icon-copy{ flex-shrink:0; }
+.code-box-pre{
+  margin:0; padding:20px 22px; overflow-x:auto; -webkit-overflow-scrolling:touch;
+}
+.code-box-pre code{
+  font-family:var(--font-mono); font-size:13.5px; line-height:1.75; color:var(--code-text);
+  white-space:pre; tab-size:4;
+}
+.tok-kw{ color:var(--code-kw); }
+.tok-fn{ color:var(--code-fn); }
+.tok-type{ color:var(--code-type); }
+.tok-str{ color:var(--code-str); }
+.tok-num{ color:var(--code-num); }
+.tok-com{ color:var(--code-comment); font-style:italic; }
+.tok-punc{ color:var(--code-punc); }
+.code-box-pre::-webkit-scrollbar{ height:8px; }
+.code-box-pre::-webkit-scrollbar-thumb{ background:#242a35; border-radius:8px; }
+
+@media (max-width:640px){
+  .post-content blockquote.pull-quote{ font-size:19px; padding:24px 16px; }
+  .code-box-pre{ padding:16px; }
+  .code-box-pre code{ font-size:12.5px; }
+  .code-copy-label{ display:none; }
+}
 
 .post-tags{ display:flex; gap:8px; flex-wrap:wrap; margin:44px 0 0; padding-top:28px; border-top:1px solid var(--border); }
 
