@@ -23,18 +23,13 @@ const skillIcons = {
 
 const skills = [
   { name:'Python', icon:'py' },
-  { name:'C++', icon:'cpp' },
+  { name:'Pygame', icon:'py' },
   { name:'Git', icon:'git' },
   { name:'GitHub', icon:'github' },
   { name:'OpenGL', icon:'gl' },
-  { name:'Pygame', icon:'pygame' },
-  { name:'JavaScript', icon:'js' },
   { name:'HTML', icon:'html' },
   { name:'CSS', icon:'css' },
-  { name:'VS Code', icon:'vscode' },
-  { name:'Algorithms', icon:'algo' },
-  { name:'Problem Solving', icon:'puzzle' },
-  { name:'Software Design', icon:'swe' },
+  { name:'VS Code', icon:'vscode' }
 ];
 
 const projects = [
@@ -55,12 +50,12 @@ const projects = [
     linkLabel:'Play on itch.io'
   },
   {
-    title:'Minesweeper 2',
+    title:'Minesweeper',
     thumb:'https://img.itch.zone/aW1nLzE5NDM1NTgzLnBuZw==/508x254%23mb/AZVrAK.png',
     desc:'A complete graphics overhaul of the classic Minesweeper — same logic puzzle, rebuilt with cleaner visuals and a more satisfying feel.',
     tags:['Python','Pygame','Puzzle'],
-    link:'https://pixelxninja.itch.io/minesweeper-2',
-    linkLabel:'Play on itch.io'
+    link:'https://github.com/10menoscared07/minesweeper',
+    linkLabel:'Play on github.com'
   },
   {
     title:'Sine Visualizer',
@@ -81,19 +76,19 @@ const achievements = [
 
 const ossProjects = [
   {
-    title:'Bezier Curve Rendering',
-    desc:'An interactive Bézier curve renderer that demonstrates how control points generate smooth mathematical curves — a foundation for animation easing and vector graphics work.',
-    link:'https://github.com/10menoscared07/Bezier-curves'
+    title:'A Basic PIXEL ART App',
+    desc:'An app for making pixel arts in strictly 16x16 resolution for now, made using pygame and python. Currently in-development',
+    link:'https://github.com/aadikrishna369/Pixel-Art-Editor'
   },
   {
-    title:'UI Elements in Pygame',
-    desc:'A set of reusable, modern UI components built specifically for Pygame — buttons, panels and interaction patterns most Pygame projects have to hand-roll from scratch.',
-    link:'https://github.com/10menoscared07/ui-elements'
+    title:'Pygame PHYSICS SIMULATIONS',
+    desc:'A collection of various types of physics simulations all done in pygame, for example Circle Packing, Ball Collision, etc.',
+    link:'https://github.com/aadikrishna369/Physics-Simulations'
   },
   {
-    title:'Button Game',
-    desc:'A small experimental project exploring how far you can push interactive gameplay built entirely around button mechanics.',
-    link:'https://github.com/10menoscared07/button-game'
+    title:'Nyaya AI',
+    desc:'A small experimental project made for the OOSC 4.0 hackathon in under a day using python and streamlit.',
+    link:'https://github.com/aadikrishna369/nyaya-ai'
   },
 ];
 
