@@ -34,6 +34,14 @@ const skills = [
 
 const projects = [
   {
+    title:'Keep It Burning',
+    thumb:'https://img.itch.zone/aW1nLzMyMjM2MDU1LnBuZw==/315x250%23c/yJQFBZ.png',
+    desc:'The night is crawling with monsters. Good thing you brought a laser. The world has gone dark, and something is lurking in the shadows. Vampires, bats, witches, ghosts, and creatures far worse are coming for you. They don\'t stop, they don\'t get tired, and they certainly don\'t come alone.Your only way to survive? Keep killing. Keep shooting. And whatever you do, keep it burning. ',
+    tags:['Python','Pygame','Survival Horror', 'Shooter'],
+    link:'https://pixelxninja.itch.io/keep-it-burning',
+    linkLabel:'Play on itch.io'
+  },
+  {
     title:'Deadwood Creek',
     thumb:'https://img.itch.zone/aW1nLzE4MzYxMzU4LnBuZw==/508x254%23mb/2vV2nJ.png',
     desc:'A ghost-hunting survival game set across a haunted village and eerie plains biome. Slip between the real world and a paranormal dimension to track down restless spirits and confront the village\'s former head.',
@@ -71,7 +79,7 @@ const achievements = [
   { icon:'🏅', title:'IOQM 2024 Qualified', desc:'Qualified in the Indian Olympiad Qualifier in Mathematics, an early milestone in a growing interest in rigorous problem-solving.' },
   { icon:'🏆', title:'NSEP 2025 State Topper', desc:'Ranked as State Topper in the National Standard Examination in Physics — recognition for depth in physics fundamentals.' },
   { icon:'🌌', title:'NSEA 2025 Qualified', desc:'Qualified in the National Standard Examination in Astronomy, reflecting a broader curiosity that extends past code and into how things work.' },
-  { icon:'🎓', title:'Incoming IT Student — IIIT Allahabad', desc:'Starting Information Technology at IIIT Allahabad this year, bringing years of independent building into a formal CS education.' },
+  { icon:'🎓', title:'IT Student — IIIT Allahabad', desc:'Studying Information Technology at IIIT Allahabad, bringing years of independent building into a formal CS education.' },
 ];
 
 const ossProjects = [
